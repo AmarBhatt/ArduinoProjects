@@ -2,6 +2,11 @@
 *
 * Name: Infrared Obstacle Avoidance Sensor
 *
+* Description: Using an IR obstacle sensor, a stepper motor
+*              switches direction and an led lights up when
+*              an obstacle is detected. Interrupt is used to
+*              read sensor asynchronously and act on the reading
+*
 * Author: Amar Bhatt
 *
 */
@@ -11,7 +16,7 @@
 //       if there is a jumper pin between the EN and VR1 
 //          then EN does not need to be connected
 
-
+//Include stepper motor library
 #include <Stepper.h>
 
 // Define Constants
@@ -28,7 +33,7 @@ Stepper myStepper(stepsPerRevolution, 8,9,10,11);
 
 void setup(){
   pinMode(ledPin, OUTPUT);
-  attachInterrupt(0, switchDirection, CHANGE);
+  attachInterrupt(0, switchDirection, CHANGE); //Set intterupt on change
   // set the speed at 60 rpm:
   myStepper.setSpeed(60);
 }
@@ -38,6 +43,7 @@ void loop(){
   myStepper.step(dir*stepsPerRevolution);
 }
 
+//Interrupt function
 void switchDirection() {
   int reading = digitalRead(senPin);
   dir = (reading == HIGH) ? -1 : 1;

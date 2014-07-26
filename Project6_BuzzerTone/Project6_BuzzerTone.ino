@@ -1,15 +1,25 @@
+/*
+* Name: Buzzer tone
+*
+* Description: Create a chime with a piezo buzzer
+* 
+* Author: Amar Bhatt, borrowed from Arduino.cc
+*
+*/
+
+//Library for all pitches
 #include "pitches.h"
 
-// notes in the melody:
+// notes in the melody
 int melody[] = {
   NOTE_C4, NOTE_G3,NOTE_G3, NOTE_A3, NOTE_G3,0, NOTE_B3, NOTE_C4};
 
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
+// note durations: 4 = quarter note, 8 = eighth note, etc.
 int noteDurations[] = {
   4, 8, 8, 4,4,4,4,4 };
 
 void setup() {
-  // iterate over the notes of the melody:
+  // iterate over the notes of the melody
   for (int thisNote = 0; thisNote < 8; thisNote++) {
 
     // to calculate the note duration, take one second

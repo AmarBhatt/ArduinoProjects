@@ -1,30 +1,38 @@
 /*
- * IRremote: IRrecvDemo - demonstrates receiving IR codes with IRrecv
- * An IR detector/demodulator must be connected to the input RECV_PIN.
- * Version 0.1 July, 2009
- * Copyright 2009 Ken Shirriff
- * http://arcfn.com
- */
+* Name: Infrared Reciever
+*
+* Description: Using an IR reciever, read an input and designate
+*              what output will be active
+*
+* Author: Amar Bhatt
+*/
 
+//Inclide IR library
 #include <IRremote.h>
 
+//Define constants for output pins
 const int redOutput = 2;
 const int greenOutput = 3;
 const int blueOutput = 4;
 const int whiteOutput = 5;
 const int buzzerOutput = 6;
 
+//Toggle variables for outputs
 int rVal = LOW;
 int bVal = LOW;
 int gVal = LOW;
 int wVal = LOW;
 
+// Pin reciever is on
 int RECV_PIN = 11;
 
+// New IR reciever object
 IRrecv irrecv(RECV_PIN);
 
+// IR reciever input decoder
 decode_results results;
 
+//Initialize
 void setup()
 {
   pinMode(redOutput, OUTPUT);
@@ -41,6 +49,8 @@ void loop() {
   if (irrecv.decode(&results)) {
     Serial.println(results.value, HEX);
     //Serial.println(results.value);
+    
+    //Read input
     switch (results.value){
       case 2576:
         digitalWrite(redOutput, !rVal);

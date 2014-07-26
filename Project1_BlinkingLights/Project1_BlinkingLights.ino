@@ -1,5 +1,5 @@
 /*
-  Name: Blink
+  Name: Blinking Lights
   Description: Turn an LED on and then off, repeatedly
                 for some time delay
   Author: Amar Bhatt

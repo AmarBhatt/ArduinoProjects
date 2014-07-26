@@ -2,6 +2,12 @@
 *
 * Name: Touch Module
 *
+* Description: Using a touch sensor, sound an alarm
+*              when the sensor is touched.  Used interrupts
+*              to make sure that blinking led light array
+*              is not paused when sensor is being read and
+*              acted upon
+*
 * Author: Amar Bhatt
 *
 */
@@ -19,17 +25,18 @@ void setup ()
   pinMode(greenPin, OUTPUT);
   pinMode(yellowPin, OUTPUT);
   pinMode(redPin, OUTPUT);
-  attachInterrupt(0, displayWarning, CHANGE);
+  attachInterrupt(0, displayWarning, CHANGE); //interrupt on change
 }
 
-void loop ()
-{
-  ledsOff();
+void loop (){
+  ledsOff(); //Turn off all leds
+  //Forward blink light array
    for(int i=redPin; i < greenPin + 1; i++) {
      ledsOff();
      digitalWrite(i, HIGH);
      delay(100);
    }
+   //backward blink light array
    for(int i=greenPin; i > redPin - 1; i--) {
      ledsOff();
      digitalWrite(i, HIGH);
@@ -38,12 +45,13 @@ void loop ()
       
 }
 
-void displayWarning() {
-
+//Interrupt function
+void displayWarning() { //Sound buzzer
   digitalWrite(buzzPin, digitalRead(sensorPin));
   //delayMicroseconds(10000);  //Works with Interrupts, however will pause the entire system
 }
 
+//Turn off LEDs
 void ledsOff() {
   digitalWrite(redPin, LOW);
   digitalWrite(greenPin, LOW);

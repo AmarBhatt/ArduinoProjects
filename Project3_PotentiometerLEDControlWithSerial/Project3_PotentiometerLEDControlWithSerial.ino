@@ -3,7 +3,7 @@ Name: Analog Read Serial with Potentiometer
 Project: 3
 Author: Amar Bhatt
 Description: Read potentiometer values using
-              built in ATD conversion
+              built in ATD (Analog to Digital) conversion
 */
 
 void setup(){
@@ -15,18 +15,18 @@ void setup(){
 void loop(){
   int sensorValue = analogRead(A0); // Get analog read
   Serial.println(sensorValue, DEC); //Print Potentiometer value in Decimal
-  float voltage = sensorValue*(5.0/1023.0);
+  float voltage = sensorValue*(5.0/1023.0); //calculate the voltage
   Serial.print("Voltage = ");
   Serial.println(voltage);
-  if (sensorValue == 0){
+  if (sensorValue == 0){ //potentiometer towards VCC
     digitalWrite(2, HIGH);
     digitalWrite(3, LOW);
   }//end if
-  else if (sensorValue == 1023){
+  else if (sensorValue == 1023){//potentiometer towards GND
     digitalWrite(3, HIGH);
     digitalWrite(2, LOW);
   }//end else if
-  else if (sensorValue == 511){
+  else if (sensorValue == 511){//potentiometer in the middle
     digitalWrite(2, HIGH);
     digitalWrite(3, HIGH);
   }//end else if

@@ -1,5 +1,13 @@
 /*
-Distance Sensitive Security System
+/*
+* Name: Distance Sensitive Security System
+*
+* Description: Using an Ultrasonic ping sensor, detecting the
+*              the distance to an object for security purposes
+* 
+* Author: Amar Bhatt
+*
+
 
 LED:  Red - Too Close
       Yellow - Be Careful
@@ -23,7 +31,7 @@ const int TooClose = 5;
 const int OK = 10;
 const int Good = 15;
 
-
+//Initialize
 void setup(){
   Serial.begin(9600);
   pinMode(redPin, OUTPUT);

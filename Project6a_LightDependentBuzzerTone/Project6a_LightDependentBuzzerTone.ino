@@ -1,4 +1,7 @@
 /*
+
+REFERENCE CODE! Not claimed as my own.
+
   Pitch follower
  
  Plays a pitch that changes based on a changing analog input

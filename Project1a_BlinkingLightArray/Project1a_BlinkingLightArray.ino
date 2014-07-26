@@ -1,22 +1,24 @@
 /*
-  Name: Blink
-  Description: Turn an LED on and then off, repeatedly
-                for some time delay
+  Name: Blinking Light Array
+  Description: Turn a series of LEDs on and then off, repeatedly
+                for some time delay that constantly gets smaller
   Author: Amar Bhatt
 */
 
-int led1 = 13; //LED is connected to Pin 13
+//Define LED pins
+int led1 = 13; 
 int led2 = 12;
 int led3 = 11;
 int led4 = 10;
 int led5 = 9;
 int led6 = 8;
 int X = 100; //Time delay
-int flip = 0;
+int flip = 0; //if 0 the leds are lit left to right, if 1 leds are lit right to left
 
 //Setup
 void setup(){
-  pinMode(led1,OUTPUT); //Initialize pin 13 for output
+  // Initialize the leds s outputs
+  pinMode(led1,OUTPUT);
   pinMode(led2,OUTPUT);
   pinMode(led3,OUTPUT);
   pinMode(led4,OUTPUT);
@@ -24,12 +26,13 @@ void setup(){
   pinMode(led6,OUTPUT);
 }// end setup
 
-void loop(){ 
+void loop(){
+  //While there is a time delay turn off and on leds
   while (X != 0){    
     if (flip == 0){
       for (int i=8; i<13; i++){
         digitalWrite(i, HIGH);
-        delay(X);
+        delay(X); //Time delay
         digitalWrite(i, LOW);
         delay(X);
       }//end for
@@ -38,7 +41,7 @@ void loop(){
     else{
        for (int i=13; i>8; i--){
         digitalWrite(i, HIGH);
-        delay(X);
+        delay(X);// time delay
         digitalWrite(i, LOW);
         delay(X);
        }//end for

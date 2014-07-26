@@ -14,9 +14,9 @@ void setup(){
 }//end setup
 
 void loop(){
-  int brightness = analogRead(A0)/4; // Get analog read and divide by 4
+  int brightness = analogRead(A0)/4; // Get analog read and divide by 4, 255:1023 ~~ 1:4
   Serial.println(brightness, DEC);
   analogWrite(8, brightness);
-  analogWrite(9, (1023/4)-brightness);
+  analogWrite(9, (1023/4)-brightness); //Inverse brightness of the led on pin 8
   delay(1);
 }//end loop

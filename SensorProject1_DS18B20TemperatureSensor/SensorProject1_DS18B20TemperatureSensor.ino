@@ -1,5 +1,10 @@
-#include <OneWire.h>
-#include <LiquidCrystal.h>
+/*
+* Name: DS18B20 Temperature Sensor
+*
+* Description: Digital thermometer
+*
+* Author: Amar Bhatt
+*/
 
 // OneWire DS18S20, DS18B20, DS1822 Temperature Example
 //
@@ -7,14 +12,22 @@
 //
 // The DallasTemperature library can do all this work for you!
 // http://milesburton.com/Dallas_Temperature_Control_Library
+#include <OneWire.h>
 
+// LCD library
+#include <LiquidCrystal.h>
+
+// Define teperature sensor pin
 OneWire  ds(10);  // on pin 10 (a 4.7K resistor is necessary)
+
+// Create new LCD display on pins 12, 11, 5, 4, 3, 2
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
+//Initialize
 void setup(void) {
-  lcd.begin(16, 2);
-  lcd.clear();
-  lcd.setCursor(0,0);
+  lcd.begin(16, 2); // 16x2 LCD
+  lcd.clear(); //reset lcd
+  lcd.setCursor(0,0); //set cursor of led to front
   lcd.print("Fahrenheit= ");
   lcd.setCursor(0,1);
   lcd.print("Celsius= ");
@@ -23,13 +36,17 @@ void setup(void) {
 }
 
 void loop(void) {
+  // Variables for OneWire library
   byte i;
   byte present = 0;
   byte type_s;
   byte data[12];
   byte addr[8];
+  
+  // Final values
   float celsius, fahrenheit;
   
+  // if sensor cannot connect
   if ( !ds.search(addr)) {
     Serial.println("No more addresses.");
     Serial.println();
@@ -38,6 +55,7 @@ void loop(void) {
     return;
   }
   
+  // get ROM value of sensor (debugging)
   Serial.print("ROM =");
   for( i = 0; i < 8; i++) {
     Serial.write(' ');

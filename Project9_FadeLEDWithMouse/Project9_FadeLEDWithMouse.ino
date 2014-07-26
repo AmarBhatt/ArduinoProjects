@@ -1,4 +1,6 @@
 /*
+REFERENCE CODE. Not claimed as my own.
+
   Dimmer
  
  Demonstrates the sending data from the computer to the Arduino board,
